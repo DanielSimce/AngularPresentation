@@ -1,0 +1,48 @@
+<div class="container" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="1">Username</label>
+            <input type="text" class="form-control" formControlName="username" id="1" aria-describedby="emailHelp" placeholder="Enter Username">
+            <span class="help-block" style="color: red;" *ngIf="registerForm.get('username').touched && registerForm.get('username').invalid">Enter Username</span>
+          </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <span class="help-block" style="color: red;" *ngIf="registerForm.get('email').touched && registerForm.get('email').invalid">Enter Email</span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password">
+          <span class="help-block" style="color: red;" *ngIf="registerForm.get('password').touched && registerForm.get('password').invalid">Enter Password</span>
+        </div>
+        <div class="form-group">
+            <label for="2">Role</label>
+            <input type="text" class="form-control" formControlName="role" id="2" placeholder="Role">
+            <span class="help-block" style="color: red;" *ngIf="registerForm.get('role').touched && registerForm.get('role').invalid">Enter Role</span>
+          </div>
+          <div class="form-group">
+            <label for="3">Job Title</label>
+            <input type="text" class="form-control" formControlName="jobTitle" id="3" placeholder="Job">
+            <span class="help-block" style="color: red;" *ngIf="registerForm.get('jobTitle').touched && registerForm.get('jobTitle').invalid">Enter Job Title</span>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="error">
+        <div *ngFor="let error of error">
+          <p style="color: red;">{{ error.code}}</p>
+          <p style="color: red;">{{ error.description}}</p>
+        </div>  
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="admin">
+      <p class="alert alert-success">{{ admin }}</p>
+    </div>
+  </div>
+  
+      
+      
+</div>

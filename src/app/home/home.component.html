@@ -1,0 +1,22 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="row">
+    <div class="col-md-12">
+      <p  class="alert alert-success">{{ message }} --- Send By Route</p>
+  <hr>
+  <div *appTimeout="10000">
+    <p [appColor]="'red'">Touch</p>
+      <hr>
+      <p *appLoop="5" [appColor]="'yellow'">Loop Structural Directive</p>
+  </div>
+  <div *ngFor="let name of names">
+    <ul class="list-group">
+      <li class="list-group-item">{{ name | uppercase1 | pipe: 5 }}</li>
+    </ul>
+  </div>
+    </div>
+  </div>
+</div>
+  
+
+
+ 

@@ -1,0 +1,43 @@
+<div *ngIf="!error" class="container" style="margin-top: 100px;">
+    &nbsp;
+    <div class="form-group row">
+        <label for="1" style="text-align: center;">Country Filter:</label>
+        &nbsp;
+    <input id="1"  type="text" name="name" [(ngModel)]="team" (ngModelChange)="Search()" placeholder="Enter Country">
+    </div>  
+    <div class="row">
+        <div class="col-md-7">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Team</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let player of nbaList | paginate:{itemsPerPage:5,currentPage:p};let i = index" style="margin-top: 5px;">
+                        <td>{{ i + 1}}</td>
+                        <td>{{ player.name}}</td>
+                        <td>{{ player.team}}</td>
+                        <td><img [src]="player.url" style="width: 50px;"></td>
+                        <td class="btn btn-primary" style="margin-right: 10px;" [routerLink]="['/nba',player.id]">Edit</td>
+                        <td class="btn btn-danger" style="margin-right: 10px;" (click)="onDelete(player.id)">Delete</td>
+                        <td class="btn btn-info" [routerLink]="['/nba-list',player.id,player.name]">Detail</td>
+        
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+        </div>
+        <div class="col-md-5">
+            <router-outlet></router-outlet>
+           </div>
+    </div>
+    
+</div>
+<div *ngIf="error">
+    <p class="alert alert-danger">{{ error}}</p>
+    <p class="alert alert-danger">Only for Managers</p>
+</div>  

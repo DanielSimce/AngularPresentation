@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 100px;">
+    &nbsp;
+    <div class="form-group row">
+        <label for="1" style="text-align: center;">Movie Filter:</label>
+        &nbsp;
+    <input id="1"  type="text" name="name" [(ngModel)]="movie" (ngModelChange)="Search()" placeholder="Enter Movie">
+    </div>   
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Col</th>
+                <th>Rent</th>
+                <th *ngIf="isAdmin()">Admin Column</th>
+                <th *ngIf="isAdmin()">Delete Movie</th>
+                <th>Movie Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movie of movieList | paginate:{itemsPerPage:5,currentPage:p};let i = index" style="margin-top: 5px;">
+                <td>{{ i + 1}}</td>
+                <td>{{ movie.name}}</td>             
+               <div *ngFor="let genre of genresList">
+                <td *ngIf="movie.genreId === genre.id" >{{genre.name}}</td>
+               </div>
+               <td>{{ movie.col}}</td>
+               <td><button class="btn btn-success" (click)="onRent(movie.id,movie)" *ngIf="movie.col > 0">Rent</button>
+                <button class="btn btn-danger" type="button" disabled *ngIf="movie.col === 0"  >Out of Stock</button>
+                </td>            
+               <td *ngIf="isAdmin()"><button class="btn btn-primary" (click)="onReturn(movie.id,movie)">Return</button></td>
+               <td *ngIf="isAdmin()"><button class="btn btn-danger" (click)="onDelete(movie.id)">Delete</button></td>
+               <td><button class="btn btn-primary" (click)="onDetail(movie.id)">Detail</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

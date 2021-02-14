@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 100px;"> 
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    {{ error }}
+  </div> 
+    <div class="col-md-6" *ngIf="!error">
+        <p>Player Details:</p>
+        <div class="card" style="width: 18rem;">
+           
+            <img class="card-img-top" [src]="url" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{name}}</h5>
+              <p class="card-text">{{ country}} </p>
+            </div>
+          </div>
+    </div>
+    <hr>
+    &nbsp;
+    <a class="btn btn-success" routerLink="/player-list">Go to List</a>
+</div>
+
+

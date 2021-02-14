@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 100px;">
+    <h1 style="margin-bottom: 25px;">Teams List</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <a 
+                [routerLink]="['/team-list',team.id]"
+                class="list-group-item"
+                *ngFor="let team of teamList" 
+              
+                >{{ team.name }}<button *ngIf="isAdmin()" style="margin-left: 10px;" class="btn btn-danger" (click)="onDelete(team.id)">Delete</button></a>
+                
+            </div>
+           
+        </div>
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    
+</div>

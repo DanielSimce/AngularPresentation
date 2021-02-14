@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 50px;">
+    <h4>Top Secrets for Admin Developers</h4>
+<div *ngIf="secrets | async as secrets">
+    <p>Role: {{ secrets.role }}</p>
+    <p>Claim: {{ secrets.claim }}</p>
+</div>
+<hr>
+<button class="btn btn-primary" (click)="onAdmin()">Register Admin</button>
+&nbsp;
+<button class="btn btn-success" (click)="onPlayer()">Create Football Player</button>
+&nbsp;
+<button class="btn btn-success" (click)="onTeam()">Create Team</button>
+&nbsp;
+<button class="btn btn-success" (click)="onMovie()">Create Movie</button>
+&nbsp;
+<button class="btn btn-success" (click)="onAdmins()">See All Admins</button>
+&nbsp;
+<button class="btn btn-success" (click)="onUsers()">See All Users</button>
+
+<div style="margin-top: 100px;" *ngIf="admins" class="list-group">
+    <p class="list-group-item" style="color: blue;" *ngFor="let admin of admins;let i = index;"> No.{{i + 1}}-{{admin.name}}</p>
+</div>
+
+<div class="list-group" style="margin-top: 100px;" *ngIf="users">
+    <p class="list-group-item" style="color: blue;" *ngFor="let user of users;let i = index;"> No.{{i + 1}}-{{user.name}}</p>
+</div>
+</div>

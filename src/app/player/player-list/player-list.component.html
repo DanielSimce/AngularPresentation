@@ -1,0 +1,38 @@
+<div *ngIf="!error" class="container" style="margin-top: 100px;">
+    <h4>Football List</h4>
+    &nbsp;
+    <div class="form-group row">
+        <label for="1" style="text-align: center;">Country Filter:</label>
+        &nbsp;
+    <input id="1"  type="text" name="name" [(ngModel)]="country" (ngModelChange)="Search()" placeholder="Enter Country">
+    </div>   
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of playerList | paginate:{itemsPerPage:5,currentPage:p};let i = index" style="margin-top: 5px;">
+                <td>{{ i + 1}}</td>
+                <td>{{ player.name}}</td>
+                <td>{{ player.country}}</td>
+                <td><img [src]="player.url" style="width: 50px;"></td>
+                <td class="btn btn-primary" style="margin-right: 10px;" [routerLink]="['/player',player.id]">Edit</td>
+                <td class="btn btn-danger" style="margin-right: 10px;" (click)="onDelete(player.id)">Delete</td>
+                <td class="btn btn-info" [routerLink]="['/player-detail',player.id]">Detail</td>
+                
+
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<div *ngIf="error">
+    <p class="alert alert-danger"> {{ error }}</p>
+    <p class="alert alert-danger">Only for Admin</p>
+</div>
+
